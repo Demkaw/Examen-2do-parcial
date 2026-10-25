@@ -214,3 +214,23 @@ function renderizarGrid() {
   $('btnVacio').textContent = buscando ? 'LIMPIAR BÚSQUEDA' : 'AGREGAR ARMA';
 }
  
+function cambiarVista(v) {
+  $('vistaColeccion').hidden = v !== 'coleccion';
+  $('vistaDetalle').hidden = v !== 'detalle';
+  $('vistaFormulario').hidden = v !== 'formulario';
+  window.scrollTo(0, 0);
+}
+ 
+function mostrarDetalle(id) {
+  const a = armas.find(x => x.id === id);
+  if (!a) return;
+  idActual = id;
+  $('aviso').hidden = true;
+  $('detalleFoto').replaceChildren(crearFoto(a, true));
+  $('detalleNombre').textContent = a.nombre;
+  $('detalleTipo').textContent = a.tipo;
+  $('detalleOrigen').textContent = a.origen || 'Desconocido';
+  $('detalleDescripcion').textContent = a.descripcion || 'Sin descripción.';
+  $('detalleFecha').textContent = a.fechaCreacion ? new Date(a.fechaCreacion).toLocaleDateString('es-MX') : 'Sin fecha';
+  cambiarVista('detalle');
+}
