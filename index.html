@@ -1,124 +1,51 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Arsenal de Alice | Madness Returns</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="hero cabecera">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title is-1">ARSENAL DE ALICE</h1>
-        <p class="subtitle is-5">Alice: Madness Returns · Colección de armas</p>
-      </div>
-    </div>
-  </header>
-
-  <main class="section">
-    <div class="container">
-      <div id="aviso" class="notification aviso" role="status" hidden></div>
-
-      <!-- Vista 1: cuadrícula -->
-      <section id="vistaColeccion">
-        <div class="columns is-vcentered">
-          <div class="column">
-            <div class="field">
-              <label class="label" for="buscar">Buscar por nombre o tipo</label>
-              <div class="control">
-                <input id="buscar" class="input is-medium" type="search" placeholder="Ej. vorpal, explosivo..." autocomplete="off">
-              </div>
+<html lang="es" class="has-navbar-fixed-top">
+    <head>
+        <meta charset="UTF-8">
+        <title>Alice's Arsenal y Mis personajes</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+        <link rel="stylesheet" href="css/style.css">
+  
+    </head>
+                <div class="column has-text-right mt-auto">
+                    <h1 class="title" style="letter-spacing: 1px;">Alice's Arsenal Registry</h1>
+                     <a class="subtitle has-text-weight-bold has-text-danger" href="https://www.youtube.com/watch?v=abI8fTvpN1U" style="text-decoration: underline;">Para conocer mas de la jugabilidad</a>
+                    <p class="subtitle">El repertorio de armas y artefactos del País de las Maravillas (y algunos personajes mios)</p>
             </div>
-          </div>
-          <div class="column is-narrow">
-            <button id="btnAgregar" class="button is-medium btn-rojo" type="button">+ AGREGAR ARMA</button>
-          </div>
-        </div>
-        <p id="contador" class="subtitle is-6 mb-4" aria-live="polite"></p>
-        <div id="grid" class="columns is-multiline"></div>
-
-        <div id="estadoVacio" class="box caja-oscura has-text-centered" hidden>
-          <h2 id="vacioTitulo" class="title is-4"></h2>
-          <p id="vacioTexto" class="subtitle is-6"></p>
-          <button id="btnVacio" class="button btn-rojo" type="button"></button>
-        </div>
-      </section>
-
-      <!-- Vista 2: detalle -->
-      <section id="vistaDetalle" hidden>
-        <button id="btnVolverDetalle" class="button btn-gris mb-5" type="button">← VOLVER A LA CUADRÍCULA</button>
-        <div class="columns">
-          <div class="column is-5"><div id="detalleFoto"></div></div>
-          <div class="column is-7">
-            <h2 id="detalleNombre" class="title is-2"></h2>
-            <span id="detalleTipo" class="tag is-medium etiqueta mb-5"></span>
-            <p class="subtitle is-6 mb-1">ORIGEN</p>
-            <p id="detalleOrigen" class="mb-4"></p>
-            <p class="subtitle is-6 mb-1">DESCRIPCIÓN</p>
-            <p id="detalleDescripcion" class="mb-4"></p>
-            <p class="subtitle is-6 mb-1">FECHA DE REGISTRO</p>
-            <p id="detalleFecha" class="mb-5"></p>
-            <div class="buttons">
-              <button id="btnEditar" class="button btn-rojo" type="button">EDITAR</button>
-              <button id="btnEliminar" class="button is-danger" type="button">ELIMINAR</button>
+        </nav>
+        
+        <div class="columns is-mobile mt-6 pt-5">
+            <div class="column is-two-thirds-desktop is-half-mobile ml-6">
+                <div class="card p-4" style="background-color: #121212; border: 1px solid #2a2a2a;">
+                    <div class="grid" id="Grid">
+                        <!-- Las tarjetas se generan dinámicamente aquí -->
+                        <div class="card cell p-auto" style="min-height: 606px; background-color: #080808; border: 1px dashed #440000;">
+                            <div class="card-image is-flex is-justify-content-center is-align-items-center" style="min-height: 100%;">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Vista 3: formulario -->
-      <section id="vistaFormulario" hidden>
-        <button id="btnVolverForm" class="button btn-gris mb-5" type="button">← VOLVER</button>
-        <h2 id="formTitulo" class="title is-3"></h2>
-        <form id="formArma" class="box caja-oscura" novalidate>
-          <div class="field">
-            <label class="label" for="nombre">Nombre *</label>
-            <div class="control"><input id="nombre" class="input" type="text" maxlength="60"></div>
-            <p id="errNombre" class="help is-danger"></p>
-          </div>
-          <div class="field">
-            <label class="label" for="tipo">Tipo *</label>
-            <div class="control">
-              <div class="select is-fullwidth">
-                <select id="tipo">
-                  <option value="">Selecciona un tipo</option>
-                  <option>Cuerpo a cuerpo</option>
-                  <option>Distancia</option>
-                  <option>Artillería</option>
-                  <option>Explosivo</option>
-                </select>
-              </div>
+            
+            <div class="column" style="position: fixed; top: 12.5rem; right: 10px; width: 30%;">
+                <div class="card mr-5" id="searchBox" style="background-color: #121212; border: 1px solid #2a2a2a;">
+                    <div class="card-content">
+                        <input class="input is-rounded" type="text" placeholder="Buscar en el registro..." id="searchInput" style="background-color: #1a1a1a; color: #fff; border: 1px solid #440000;"/>
+                    </div>
+                    <footer class="card-footer p-4" style="border-top: 1px solid #2a2a2a;">
+                        <a class="card-footer-item icon my-auto" id="saveCatalog" style="color: #fff;"><figure class="image mr-2 invert"><img src ="Guardar" style="width: 24px;"></figure>Guardar</a>
+                        <a class="card-footer-item icon my-auto" id="loadCatalog" style="color: #fff;"><figure class><img src ="Cargar" style="width: 24px;"></figure>Cargar</a>
+                        <a class="card-footer-item icon my-auto" id="resetCatalog" style="color: #fff;"><figure class=><img src ="Restablecer" style="width: 24px;"></figure>Reset</a>
+                    </footer>
+                </div>
+                
+                <div class="card p-5 mt-3 mr-5" id="descriptionBox" style="height: 600px; background-color: #121212; border: 1px solid #2a2a2a; overflow-y: auto;">
+                    <p class="title has-text-centered text-white" style="font-size: 1.5rem;">Expediente de Armas</p>
+                    <p class="subtitle has-text-centered">Selecciona un elemento para ver su información detallada.</p>
+                </div>
             </div>
-            <p id="errTipo" class="help is-danger"></p>
-          </div>
-          <div class="field">
-            <label class="label" for="origen">Origen</label>
-            <div class="control"><input id="origen" class="input" type="text" maxlength="80"></div>
-          </div>
-          <div class="field">
-            <label class="label" for="imagen">Imagen (ruta relativa o URL)</label>
-            <div class="control"><input id="imagen" class="input" type="text" placeholder="imagenes/arma.png"></div>
-            <p id="errImagen" class="help is-danger"></p>
-          </div>
-          <div class="field">
-            <label class="label" for="descripcion">Descripción</label>
-            <div class="control"><textarea id="descripcion" class="textarea" rows="4" maxlength="300"></textarea></div>
-          </div>
-          <div class="buttons mt-5">
-            <button class="button btn-rojo" type="submit">GUARDAR</button>
-            <button id="btnCancelar" class="button btn-gris" type="button">CANCELAR</button>
-          </div>
-        </form>
-      </section>
-    </div>
-  </main>
-
-  <footer class="footer pie">
-    <p class="has-text-centered">LAD319 · Proyecto CRUD con localStorage · Alice: Madness Returns</p>
-  </footer>
-
-  <script src="app.js"></script>
-</body>
+        </div>
+        <script src="js/main.js"></script>
+    </body>
 </html>

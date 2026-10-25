@@ -1,36 +1,411 @@
-:root { --rojo: #b00020; --gris: #9e9e9e; --borde: #333; }
-html, body { background: #000; color: #fff; min-height: 100vh; }
-h1, h2, h3, p, label, .title, .label { color: #fff; }
-.subtitle { color: var(--gris) !important; }
-.cabecera { background: #000; border-bottom: 2px solid var(--rojo); }
-.cabecera .title { letter-spacing: .15em; }
-.pie { background: #000; border-top: 1px solid var(--borde); padding: 1.5rem; }
-.pie p { color: var(--gris); font-size: .85rem; }
+/* --- Paleta de Colores: Fondo Negro, Letras Blancas, Subtítulos Grises, Acentos Rojo Carmesí --- */
+:root {
+  --fondo-negro: #000000;
+  --superficie-oscura: #121212;
+  --borde-oscuro: #2a2a2a;
+  --texto-blanco: #ffffff;
+  --texto-gris: #a0a0a0;
+  --rojo-carmesi: #8b0000;
+  --rojo-brillante: #b22222;
+}
 
-.input, .textarea, .select select { background: #111; color: #fff; border-color: #444; }
-.input::placeholder, .textarea::placeholder { color: #777; }
-.input:focus, .textarea:focus, .select select:focus { border-color: #fff; box-shadow: 0 0 0 2px rgba(255,255,255,.2); }
-.select select option { background: #111; color: #fff; }
-.select:not(.is-multiple)::after { border-color: #fff; }
-.input.is-danger, .select.is-danger select { border-color: #ff6b6b; }
-.help.is-danger { color: #ff6b6b; }
+* {
+  font-family: "Times New Roman", Times, serif !important;
+}
 
-.caja-oscura { background: #0d0d0d; border: 1px solid var(--borde); box-shadow: none; }
-.btn-rojo { background: var(--rojo); color: #fff; border: none; }
-.btn-rojo:hover { background: #d0002a; color: #fff; }
-.btn-gris { background: transparent; color: #fff; border: 1px solid #666; }
-.btn-gris:hover { background: #222; color: #fff; border-color: #fff; }
-.etiqueta { background: #222; color: #fff; border: 1px solid #555; }
+body {
+  background-color: var(--fondo-negro) !important;
+  color: var(--texto-blanco) !important;
+  min-height: 100vh;
+}
 
-.aviso { background: #1a1a1a; color: #fff; border-left: 4px solid #4caf50; }
-.aviso.es-aviso { border-left-color: #ffb300; }
-.aviso.es-error { border-left-color: #ff6b6b; }
+h1, h2, h3, h4, h5, h6, strong {
+  color: var(--texto-blanco) !important;
+}
 
-.tarjeta { background: #0d0d0d; border: 1px solid var(--borde); border-radius: 6px; overflow: hidden; height: 100%; transition: transform .15s, border-color .15s; }
-.tarjeta:hover { transform: translateY(-3px); border-color: var(--rojo); }
-.tarjeta-cuerpo { padding: 1rem; display: flex; flex-direction: column; align-items: flex-start; gap: .6rem; }
-.tarjeta-nombre { font-size: 1.3rem; font-weight: 700; }
-.foto { position: relative; background: #1a1a1a; display: flex; align-items: center; justify-content: center; overflow: hidden; height: 200px; }
-.foto.grande { height: 320px; border: 1px solid var(--borde); border-radius: 6px; }
-.foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #111; }
-.iniciales { font-size: 3rem; font-weight: 800; color: var(--gris); }
+p, span, label, small {
+  color: var(--texto-blanco);
+}
+
+.subtitulo-portada, .descripcion-seccion, .fecha-detalle, .ayuda-formulario, .help {
+  color: var(--texto-gris) !important;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Encabezado */
+.encabezado {
+  background: var(--superficie-oscura);
+  border-bottom: 2px solid var(--rojo-carmesi);
+}
+
+.barra {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+}
+
+.marca {
+  color: var(--texto-blanco);
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.marca strong {
+  color: var(--rojo-brillante);
+}
+
+.anillo {
+  width: 20px;
+  height: 20px;
+  border: 4px solid var(--rojo-carmesi);
+  border-radius: 50%;
+  background: #000;
+}
+
+.marca-secundaria {
+  color: var(--texto-gris);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+}
+
+/* Portada */
+.portada {
+  background: #080808;
+  border-bottom: 4px solid var(--rojo-carmesi);
+  padding: 40px 20px;
+}
+
+.etiqueta-portada {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--rojo-carmesi);
+  color: var(--texto-blanco);
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.titulo-portada {
+  font-size: clamp(45px, 6vw, 80px);
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+.titulo-portada span {
+  color: var(--rojo-brillante);
+}
+
+.portada-foto {
+  width: min(100%, 320px);
+  margin: auto;
+  position: relative;
+  border: 3px solid var(--rojo-carmesi);
+  background: #000;
+}
+
+.portada-foto img {
+  display: block;
+  width: 100%;
+}
+
+.portada-sticker {
+  position: absolute;
+  right: -15px;
+  bottom: -15px;
+  background: var(--rojo-carmesi);
+  color: var(--texto-blanco);
+  border: 1px solid var(--texto-blanco);
+  padding: 8px 12px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Botones */
+.button {
+  border-radius: 0px !important;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.boton-rojo {
+  background-color: var(--rojo-carmesi) !important;
+  color: var(--texto-blanco) !important;
+  border: 1px solid var(--rojo-brillante) !important;
+}
+
+.boton-rojo:hover {
+  background-color: var(--rojo-brillante) !important;
+  color: var(--texto-blanco) !important;
+}
+
+.boton-volver {
+  background: transparent !important;
+  border: none !important;
+  color: var(--texto-gris) !important;
+  font-size: 18px;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.boton-volver:hover {
+  color: var(--texto-blanco) !important;
+}
+
+/* Secciones y Contenedores */
+.contenido {
+  padding: 40px 20px 60px;
+}
+
+.encabezado-seccion {
+  margin-bottom: 20px;
+}
+
+.sobrelinea {
+  font-size: 13px;
+  color: var(--rojo-brillante);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.titulo-seccion {
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+
+.barra-busqueda {
+  background: var(--superficie-oscura);
+  border: 1px solid var(--borde-oscuro);
+  padding: 15px 20px;
+  margin-bottom: 25px !important;
+}
+
+.label {
+  color: var(--texto-blanco) !important;
+}
+
+.input, .textarea, .select select {
+  background-color: #1a1a1a !important;
+  color: var(--texto-blanco) !important;
+  border: 1px solid var(--borde-oscuro) !important;
+  border-radius: 0 !important;
+}
+
+.input:focus, .textarea:focus, .select select:focus {
+  border-color: var(--rojo-brillante) !important;
+  box-shadow: none !important;
+}
+
+.contador {
+  color: var(--texto-gris) !important;
+  font-size: 14px;
+}
+
+/* Tarjeta Personaje / Arma */
+.tarjeta-personaje {
+  background: var(--superficie-oscura);
+  border: 1px solid var(--borde-oscuro);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.foto-personaje {
+  height: 220px;
+  background: #080808;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--borde-oscuro);
+}
+
+.foto-personaje img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inicial {
+  font-size: 60px;
+  color: var(--rojo-brillante);
+  font-weight: bold;
+}
+
+.cuerpo-tarjeta {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.nombre-personaje {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.etiqueta-rol {
+  background: var(--rojo-carmesi) !important;
+  color: var(--texto-blanco) !important;
+  font-size: 11px;
+  border-radius: 0 !important;
+  align-self: flex-start;
+}
+
+.boton-ver {
+  width: 100%;
+  margin-top: auto;
+  background: #1a1a1a !important;
+  color: var(--texto-blanco) !important;
+  border: 1px solid var(--borde-oscuro) !important;
+}
+
+.boton-ver:hover {
+  background: var(--rojo-carmesi) !important;
+  color: var(--texto-blanco) !important;
+}
+
+/* Estado Vacío */
+.estado-vacio {
+  text-align: center;
+  background: var(--superficie-oscura);
+  border: 1px dashed var(--borde-oscuro);
+  padding: 40px 20px;
+}
+
+.estado-icono {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* Detalle y Formulario */
+.detalle-tarjeta, .formulario-tarjeta {
+  background: var(--superficie-oscura);
+  border: 1px solid var(--borde-oscuro);
+  padding: 30px;
+}
+
+.foto-detalle {
+  background: #080808;
+  border: 1px solid var(--borde-oscuro);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.foto-detalle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.formulario-tarjeta {
+  max-width: 750px;
+  margin: auto;
+}
+
+.pie-pagina {
+  background: var(--superficie-oscura);
+  border-top: 2px solid var(--rojo-carmesi);
+  color: var(--texto-gris);
+  text-align: center;
+  padding: 20px 15px;
+  font-size: 13px;
+}
+
+.pie-pagina span {
+  color: var(--rojo-brillante);
+}
+
+/* --- Estilos Generales y Tipografía --- */
+body, html {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    font-family: "Times New Roman", Times, serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, label, p, a {
+    font-family: "Times New Roman", Times, serif !important;
+}
+
+/* --- Barra de Navegación --- */
+.navbar {
+    background-color: #121212 !important;
+    border-bottom: 2px solid #8b0000 !important;
+}
+
+/* --- Tarjetas y Contenedores --- */
+.card {
+    background-color: #121212 !important;
+    border: 1px solid #2a2a2a !important;
+    color: #ffffff !important;
+}
+
+/* Tarjeta contenedora de la cuadrícula o paneles laterales */
+.card-content {
+    background-color: transparent !important;
+}
+
+/* --- Inputs y Formularios --- */
+input, textarea, select {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border: 1px solid #440000 !important;
+    font-family: "Times New Roman", Times, serif !important;
+}
+
+input:focus, textarea:focus {
+    border-color: #8b0000 !important;
+    box-shadow: 0 0 5px rgba(139, 0, 0, 0.5) !important;
+}
+
+/* --- Títulos y Textos --- */
+.title {
+    color: #ffffff !important;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    color: #a0a0a0 !important;
+}
+
+/* --- Botones y Elementos Interactivos --- */
+#addToRegistro {
+    cursor: pointer;
+}
+
+#addToRegistro img {
+    filter: drop-shadow(0 0 5px #8b0000);
+}
+
+.card-footer {
+    border-top: 1px solid #2a2a2a !important;
+    background-color: #121212 !important;
+}
+
+.card-footer-item {
+    color: #ffffff !important;
+}
+
+.card-footer-item:hover {
+    color: #ff6b6b !important;
+    background-color: #1a1a1a !important;
+}
+
+/* --- Panel de Expediente / Descripción --- */
+#descriptionBox {
+    background-color: #121212 !important;
+    border: 1px solid #2a2a2a !important;
+    overflow-y: auto;
+}
