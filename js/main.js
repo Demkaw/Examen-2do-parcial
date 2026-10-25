@@ -234,3 +234,49 @@ function mostrarDetalle(id) {
   $('detalleFecha').textContent = a.fechaCreacion ? new Date(a.fechaCreacion).toLocaleDateString('es-MX') : 'Sin fecha';
   cambiarVista('detalle');
 }
+ 
+// ====== Formulario ======
+function limpiarErrores() {
+  ['Nombre', 'Tipo', 'Imagen'].forEach(c => {
+    $('err' + c).textContent = '';
+    $(c.toLowerCase()).classList.remove('is-danger');
+  });
+}
+ 
+function abrirFormulario(id = null) {
+  idEditando = id;
+  $('aviso').hidden = true;
+  $('formArma').reset();
+  limpiarErrores();
+  $('formTitulo').textContent = id ? 'EDITAR ARMA' : 'NUEVA ARMA';
+  if (id) {
+    const a = armas.find(x => x.id === id);
+    if (!a) return;
+    $('nombre').value = a.nombre;
+    $('tipo').value = a.tipo;
+    $('origen').value = a.origen || '';
+    $('imagen').value = a.imagen || '';
+    $('descripcion').value = a.descripcion || '';
+  }
+  cambiarVista('formulario');
+}
+ 
+function validar(d) {
+  limpiarErrores();
+  let ok = true;
+  const error = (campo, msg) => {
+    $('err' + campo[0].toUpperCase() + campo.slice(1)).textContent = msg;
+    $(campo).classList.add('is-danger');
+    ok = false;
+  };
+  if (!d.nombre) error('nombre', 'Escribe el nombre del arma.');
+  else if (armas.some(a => normalizar(a.nombre) === normalizar(d.nombre) && a.id !== idEditando)) {
+    error('nombre', 'Ya existe un arma con ese nombre.');
+  }
+  if (!d.tipo) error('tipo', 'Selecciona un tipo.');
+  if (d.imagen && !/^(imagenes\/[\w./-]+|https?:\/\/\S+)\.(png|jpe?g|webp|gif)$/i.test(d.imagen)) {
+    error('imagen', 'Usa una ruta como imagenes/arma.png o una URL de imagen.');
+  }
+  return ok;
+}
+ 
