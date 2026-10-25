@@ -1,0 +1,36 @@
+:root { --rojo: #b00020; --gris: #9e9e9e; --borde: #333; }
+html, body { background: #000; color: #fff; min-height: 100vh; }
+h1, h2, h3, p, label, .title, .label { color: #fff; }
+.subtitle { color: var(--gris) !important; }
+.cabecera { background: #000; border-bottom: 2px solid var(--rojo); }
+.cabecera .title { letter-spacing: .15em; }
+.pie { background: #000; border-top: 1px solid var(--borde); padding: 1.5rem; }
+.pie p { color: var(--gris); font-size: .85rem; }
+
+.input, .textarea, .select select { background: #111; color: #fff; border-color: #444; }
+.input::placeholder, .textarea::placeholder { color: #777; }
+.input:focus, .textarea:focus, .select select:focus { border-color: #fff; box-shadow: 0 0 0 2px rgba(255,255,255,.2); }
+.select select option { background: #111; color: #fff; }
+.select:not(.is-multiple)::after { border-color: #fff; }
+.input.is-danger, .select.is-danger select { border-color: #ff6b6b; }
+.help.is-danger { color: #ff6b6b; }
+
+.caja-oscura { background: #0d0d0d; border: 1px solid var(--borde); box-shadow: none; }
+.btn-rojo { background: var(--rojo); color: #fff; border: none; }
+.btn-rojo:hover { background: #d0002a; color: #fff; }
+.btn-gris { background: transparent; color: #fff; border: 1px solid #666; }
+.btn-gris:hover { background: #222; color: #fff; border-color: #fff; }
+.etiqueta { background: #222; color: #fff; border: 1px solid #555; }
+
+.aviso { background: #1a1a1a; color: #fff; border-left: 4px solid #4caf50; }
+.aviso.es-aviso { border-left-color: #ffb300; }
+.aviso.es-error { border-left-color: #ff6b6b; }
+
+.tarjeta { background: #0d0d0d; border: 1px solid var(--borde); border-radius: 6px; overflow: hidden; height: 100%; transition: transform .15s, border-color .15s; }
+.tarjeta:hover { transform: translateY(-3px); border-color: var(--rojo); }
+.tarjeta-cuerpo { padding: 1rem; display: flex; flex-direction: column; align-items: flex-start; gap: .6rem; }
+.tarjeta-nombre { font-size: 1.3rem; font-weight: 700; }
+.foto { position: relative; background: #1a1a1a; display: flex; align-items: center; justify-content: center; overflow: hidden; height: 200px; }
+.foto.grande { height: 320px; border: 1px solid var(--borde); border-radius: 6px; }
+.foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #111; }
+.iniciales { font-size: 3rem; font-weight: 800; color: var(--gris); }
